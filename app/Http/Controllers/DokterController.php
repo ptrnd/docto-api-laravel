@@ -49,7 +49,7 @@ class DokterController extends Controller
         $dokter->spesialisasi = $request->spesialisasi;
         $dokter->alamat = $request->alamat;
         $dokter->telp = $request->telp;
-        $dokter->nomor_str = $request->nomor_str;
+        $dokter->keterangan = $request->keterangan;
 
         if($dokter->save()){
             return response([
@@ -71,7 +71,7 @@ class DokterController extends Controller
         $newSpesialisasi = $request->spesialisasi;
         $newAlamat = $request->alamat;
         $newTelp = $request->telp;
-        $newNomorStr = $request->nomor_str;
+        $newKeterangan = $request->keterangan;
         
         $dokter = DokterModel::find($id);
 
@@ -79,7 +79,7 @@ class DokterController extends Controller
         $dokter->spesialisasi = $newSpesialisasi ? $newSpesialisasi : $dokter->spesialisasi;
         $dokter->alamat = $newAlamat ? $newAlamat : $dokter->alamat;
         $dokter->telp = $newTelp ? $newTelp : $dokter->telp;
-        $dokter->nomor_str = $newNomorStr ? $newNomorStr : $dokter->nomor_str;
+        $dokter->keterangan = $newKeterangan ? $newKeterangan : $dokter->keterangan;
 
         if($dokter->save()){
             return response([
