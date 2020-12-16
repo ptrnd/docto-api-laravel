@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 12, 2020 at 12:51 PM
+-- Generation Time: Dec 16, 2020 at 04:03 AM
 -- Server version: 10.4.16-MariaDB
 -- PHP Version: 7.4.12
 
@@ -69,12 +69,12 @@ CREATE TABLE `dokter` (
 --
 
 INSERT INTO `dokter` (`id_dokter`, `nama_dokter`, `spesialisasi`, `alamat`, `telp`, `keterangan`, `created_at`, `updated_at`) VALUES
-(1, 'Dr. Taufik Hamdah', 'Spesialis Jantung', 'Jl. Ikan Tombro No. 55 Malang', '081253509635', '1111255724264913', '2020-12-03 22:39:59', NULL),
-(2, 'dr. Budi Setiawan', 'Spesialis Gizi', 'Jl. Semanggi Utara No. 23 Malang', '081584279531', '1111473859247381', '2020-12-03 22:39:59', NULL),
-(3, 'Dr. Jamaluddin Sp.OG', 'Spesialis Kandungan', 'Jl. Soekarno Hatta No. 63 Surabaya', '082356781234', '1111738294728471', '2020-12-03 22:45:06', NULL),
-(4, 'Dr. Muhammad Ridho Azhari', 'Dokter Umum', 'Perum. IPMOMI Jl. Bali No. 13 Paiton, Probolinggo', '084728195438', '5192748392857111', '2020-12-03 22:42:32', NULL),
-(5, 'Drg. Marlisa', 'Dokter Gigi', 'Jl. Soe Hok Gie No. 4 Banten', '0847284927481', '1211149285912469', '2020-12-03 22:42:32', NULL),
-(7, 'dr. Abdulloh', 'Spesialis THT', 'Jl. Djarum', '083272546711', 'minggu libur', '2020-12-03 21:31:57', '2020-12-03 21:33:08');
+(1, 'Dr. Taufik Hamdah', 'Spesialis Jantung', 'Jl. Ikan Tombro No. 55 Malang', '081253509635', NULL, '2020-12-03 22:39:59', NULL),
+(2, 'dr. Budi Setiawan', 'Spesialis Gizi', 'Jl. Semanggi Utara No. 23 Malang', '081584279531', NULL, '2020-12-03 22:39:59', NULL),
+(3, 'Dr. Jamaluddin Sp.OG', 'Spesialis Kandungan', 'Jl. Soekarno Hatta No. 63 Surabaya', '082356781234', NULL, '2020-12-03 22:45:06', NULL),
+(4, 'Dr. Muhammad Ridho Azhari', 'Dokter Umum', 'Perum. IPMOMI Jl. Bali No. 13 Paiton, Probolinggo', '084728195438', NULL, '2020-12-03 22:42:32', NULL),
+(5, 'Drg. Marlisa', 'Dokter Gigi', 'Jl. Soe Hok Gie No. 4 Banten', '0847284927481', NULL, '2020-12-03 22:42:32', NULL),
+(7, 'dr. Abdulloh', 'Spesialis THT', 'Jl. Djarum', '083272546711', NULL, '2020-12-03 21:31:57', '2020-12-03 21:33:08');
 
 -- --------------------------------------------------------
 
@@ -152,7 +152,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id_user`, `nama_user`, `email`, `username`, `password`, `telp`, `alamat`, `created_at`, `updated_at`) VALUES
 (1, 'Putranda Bagus', 'putrandabgs@gmail.com', 'putrandabgs', '1q2w3e4r5t', '08123456789', 'JL. Simpang Remujung No. 10', '2020-12-11 11:43:46', '2020-12-12 04:36:16'),
-(3, 'Cahya L.', 'cahya@gmail.com', 'cahyal', 'asdfghjkl', '081234567890', 'Jl. Terserah', '2020-12-03 22:06:20', NULL);
+(3, 'Cahya L.', 'cahya@gmail.com', 'cahyal', 'asdfghjkl', '081234567890', 'Jl. Terserah', '2020-12-03 22:06:20', NULL),
+(4, 'Tono Waluyo', 'tonotono@gmail.com', 'tono', '12345678', '08123456789', 'Jl. 123456789', '2020-12-14 21:00:34', '2020-12-14 21:00:34');
 
 -- --------------------------------------------------------
 
@@ -251,7 +252,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_user` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
