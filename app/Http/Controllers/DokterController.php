@@ -11,16 +11,18 @@ class DokterController extends Controller
     {
         $dokter = DokterModel::all();
         if (count($dokter)) {
-            return response([
-                'status' => 'OK',
-                'message' => 'Data Dokter Ditemukan',
-                'data' => $dokter
-            ], 200);
+            return response($dokter, 200);
+            // return response([
+            //     'status' => 'OK',
+            //     'message' => 'Data Dokter Ditemukan',
+            //     'data' => $dokter
+            // ], 200);
         } else {
-            return response([
-                'status' => 'Not Found',
-                'message' => 'Data Tidak Ditemukan'
-            ], 404);
+            return response(404);
+            // return response([
+            //     'status' => 'Not Found',
+            //     'message' => 'Data Tidak Ditemukan'
+            // ], 404);
         }
     }
 
@@ -28,16 +30,18 @@ class DokterController extends Controller
     {
         $dokter = DokterModel::where('id_dokter', $id)->get();
         if(count($dokter) > 0){
-            return response([
-                'status' => 'OK',
-                'message' => 'Data Dokter Ditemukan',
-                'data' => $dokter
-            ], 200);
+            return response($dokter, 200);
+            // return response([
+            //     'status' => 'OK',
+            //     'message' => 'Data Dokter Ditemukan',
+            //     'data' => $dokter
+            // ], 200);
         } else {
-            return response([
-                'status' => 'Not Found',
-                'message' => 'Data Tidak Ditemukan'
-            ], 404);
+            return response(404);
+            // return response([
+            //     'status' => 'Not Found',
+            //     'message' => 'Data Tidak Ditemukan'
+            // ], 404);
         }
     }
 
@@ -52,16 +56,18 @@ class DokterController extends Controller
         $dokter->keterangan = $request->keterangan;
 
         if($dokter->save()){
-            return response([
-                'status' => 'OK',
-                'message' => 'Data Dokter Berhasil Disimpan',
-                'data' => $dokter
-            ], 200);
+            return response($dokter, 200);
+            // return response([
+            //     'status' => 'OK',
+            //     'message' => 'Data Dokter Berhasil Disimpan',
+            //     'data' => $dokter
+            // ], 200);
         } else {
-            return response([
-                'status' => 'Failed',
-                'message' => 'Data Dokter Gagal Disimpan'
-            ], 400);
+            return response(400);
+            // return response([
+            //     'status' => 'Failed',
+            //     'message' => 'Data Dokter Gagal Disimpan'
+            // ], 400);
         }
     }
 
@@ -82,16 +88,18 @@ class DokterController extends Controller
         $dokter->keterangan = $newKeterangan ? $newKeterangan : $dokter->keterangan;
 
         if($dokter->save()){
-            return response([
-                'status' => 'OK',
-                'message' => 'Data Dokter Berhasil Disimpan',
-                'data' => $dokter
-            ], 200);
+            return response($dokter, 200);
+            // return response([
+            //     'status' => 'OK',
+            //     'message' => 'Data Dokter Berhasil Disimpan',
+            //     'data' => $dokter
+            // ], 200);
         } else {
-            return response([
-                'status' => 'Failed',
-                'message' => 'Data Dokter Gagal Disimpan'
-            ], 400);
+            return response(400);
+            // return response([
+            //     'status' => 'Failed',
+            //     'message' => 'Data Dokter Gagal Disimpan'
+            // ], 400);
         }
     }
 
@@ -99,15 +107,17 @@ class DokterController extends Controller
     {
         $dokter = DokterModel::where('id_dokter', $id);
         if ($dokter->delete()) {
-            return response([
-                'status' => 'OK',
-                'message' => 'Data Dokter Berhasil Dihapus.'
-            ], 200);
+            return response(200);
+            // return response([
+            //     'status' => 'OK',
+            //     'message' => 'Data Dokter Berhasil Dihapus.'
+            // ], 200);
         } else{
-            return response([
-                'status' => 'Failed',
-                'message' => 'Data Dokter Gagal Dihapus'
-            ], 400);
+            return response(400);
+            // return response([
+            //     'status' => 'Failed',
+            //     'message' => 'Data Dokter Gagal Dihapus'
+            // ], 400);
         }
     }
 }

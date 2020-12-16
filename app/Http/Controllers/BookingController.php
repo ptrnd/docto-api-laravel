@@ -11,16 +11,18 @@ class BookingController extends Controller
     {
         $booking = BookingModel::all();
         if(count($booking) > 0){
-            return response([
-                'status' => 'OK',
-                'message' => 'Booking Ditemukan',
-                'data' => $booking
-            ], 200);
+            return response($booking, 200);
+            // return response([
+            //     'status' => 'OK',
+            //     'message' => 'Booking Ditemukan',
+            //     'data' => $booking
+            // ], 200);
         } else {
-            return response([
-                'status' => 'Not Found',
-                'message' => 'Data Tidak Ditemukan'
-            ], 404);
+            return response(404);
+            // return response([
+            //     'status' => 'Not Found',
+            //     'message' => 'Data Tidak Ditemukan'
+            // ], 404);
         }
     }
 
@@ -28,16 +30,18 @@ class BookingController extends Controller
     {
         $booking = BookingModel::where('id_booking', $id)->get();
         if(count($booking) > 0){
-            return response([
-                'status' => 'OK',
-                'message' => 'Data Booking Ditemukan',
-                'data' => $booking
-            ], 200);
+            return response($booking, 200);
+            // return response([
+            //     'status' => 'OK',
+            //     'message' => 'Data Booking Ditemukan',
+            //     'data' => $booking
+            // ], 200);
         } else {
-            return response([
-                'status' => 'Not Found',
-                'message' => 'Data Tidak Ditemukan'
-            ], 404);
+            return response(404);
+            // return response([
+            //     'status' => 'Not Found',
+            //     'message' => 'Data Tidak Ditemukan'
+            // ], 404);
         }
     }
 
@@ -50,16 +54,18 @@ class BookingController extends Controller
         $insert_booking->tanggal = $request->tanggal;
 
         if($insert_booking->save()){
-            return response([
-                'status' => 'OK',
-                'message' => 'Data Booking Berhasil Disimpan',
-                'data' => $insert_booking
-            ], 200);
+            return response($insert_booking, 200);
+            // return response([
+            //     'status' => 'OK',
+            //     'message' => 'Data Booking Berhasil Disimpan',
+            //     'data' => $insert_booking
+            // ], 200);
         } else {
-            return response([
-                'status' => 'Failed',
-                'message' => 'Data Booking Gagal Disimpan'
-            ], 400);
+            return response(400);
+            // return response([
+            //     'status' => 'Failed',
+            //     'message' => 'Data Booking Gagal Disimpan'
+            // ], 400);
         }
     }
 
@@ -76,16 +82,18 @@ class BookingController extends Controller
         $booking->tanggal = $newTanggal ? $newTanggal : $booking->tanggal;
 
         if($booking->save()){
-            return response([
-                'status' => 'OK',
-                'message' => 'Booking berhasil Disimpan',
-                'data' => $booking
-                ], 200);
+            return response($booking, 200);
+            // return response([
+            //     'status' => 'OK',
+            //     'message' => 'Booking berhasil Disimpan',
+            //     'data' => $booking
+            // ], 200);
         } else {
-            return response([
-                'status' => 'Failed',
-                'message' => 'Booking Gagal Disimpan'
-            ], 400);
+            return response(400);
+            // return response([
+            //     'status' => 'Failed',
+            //     'message' => 'Booking Gagal Disimpan'
+            // ], 400);
         }
     }
 
@@ -93,15 +101,17 @@ class BookingController extends Controller
     {
         $booking = BookingModel::where('id_booking', $id);
         if($booking->delete()){
-            return response([
-                'status' => 'OK',
-                'message' => 'Data Booking Berhasil Dihapus'
-            ], 200);
+            return response(200);
+            // return response([
+            //     'status' => 'OK',
+            //     'message' => 'Data Booking Berhasil Dihapus'
+            // ], 200);
         } else {
-            return response([
-                'status' => 'Failed',
-                'message' => 'Data Booking Gagal Dihapus'
-            ], 400);
+            return response(400);
+            // return response([
+            //     'status' => 'Failed',
+            //     'message' => 'Data Booking Gagal Dihapus'
+            // ], 400);
         }
     }
 }

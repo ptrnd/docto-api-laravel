@@ -3,6 +3,8 @@
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DokterController;
+use App\Http\Controllers\LoginController;
+use Illuminate\Auth\Events\Login;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,8 +23,13 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
+
+Route::get('login/{username}/{password}', [LoginController::class, 'login']);
+
 Route::get('user', [UserController::class, 'get_all_user']);
 Route::get('user/{id}', [UserController::class, 'getUserById']);
+Route::get('user/{id}/riwayat', [UserController::class, 'getUserBookingHistory']);
+
 Route::post('user/tambah', [UserController::class, 'insert_user']);
 Route::put('user/update/{id}', [UserController::class, 'update_user']);
 // Route::patch('user/update/{id}', [UserController::class, 'update_user']);

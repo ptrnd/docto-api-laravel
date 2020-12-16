@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BookingModel;
+use App\Models\DokterModel;
 use Illuminate\Http\Request;
 use App\Models\UserModel;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -11,16 +14,18 @@ class UserController extends Controller
     {
         $user = UserModel::all();
         if(count($user) > 0){
-            return response([
-                'status' => 'OK',
-                'message' => 'User Ditemukan',
-                'data' => $user
-            ], 200);
+            return response($user, 200);
+            // return response([
+            //     'status' => 'OK',
+            //     'message' => 'User Ditemukan',
+            //     'data' => $user
+            // ], 200);
         } else {
-            return response([
-                'status' => 'Not Found',
-                'message' => 'Data Tidak Ditemukan'
-            ], 404);
+            return response(404);
+            // return response([
+            //     'status' => 'Not Found',
+            //     'message' => 'Data Tidak Ditemukan'
+            // ], 404);
         }
         // return response()->json(UserModel::all(), 200);
     }
@@ -29,16 +34,67 @@ class UserController extends Controller
     {
         $user = UserModel::where('id_user', $id)->get();
         if(count($user) > 0){
-            return response([
-                'status' => 'OK',
-                'message' => 'User Ditemukan',
-                'data' => $user
-            ], 200);
+            return response($user, 200);
+            // return response([
+            //     'status' => 'OK',
+            //     'message' => 'User Ditemukan',
+            //     'data' => $user
+            // ], 200);
         } else {
-            return response([
-                'status' => 'Not Found',
-                'message' => 'Data Tidak Ditemukan'
-            ], 404);
+            return response(404);
+            // return response([
+            //     'status' => 'Not Found',
+            //     'message' => 'Data Tidak Ditemukan'
+            // ], 404);
+        }
+    }
+
+    public function getUserBooking($id)
+    {
+        $userBooking = BookingModel::where('id_user', $id)->get();
+        if(count($userBooking) > 0){
+            return response($userBooking, 200);
+            // return response([
+            //     'status' => 'OK',
+            //     'message' => 'User Ditemukan',
+            //     'data' => $userBooking
+            // ], 200);
+        } else {
+            return response(404);
+            // return response([
+            //     'status' => 'Not Found',
+            //     'message' => 'Data Tidak Ditemukan'
+            // ], 404);
+        }
+    }
+
+    public function getUserBookingHistory($id)
+    {
+        $userBooking = DB::table('booking AS b')
+                            ->select(DB::raw('b.id_user AS id_user,
+                                    DATE_FORMAT(b.tanggal, "%d-%m-%Y") AS tanggal,
+                                    d.id_dokter AS id_dokter,
+                                    d.nama_dokter AS nama_dokter,
+                                    d.alamat AS alamat,
+                                    d.spesialisasi AS spesialisasi, 
+                                    d.telp AS telp'))
+                            ->join('dokter AS d', 'd.id_dokter', '=', 'b.id_dokter')
+                            ->where('b.id_user', $id)
+                            ->orderByDesc('b.tanggal')
+                            ->get();
+        if(count($userBooking) > 0){
+            return response($userBooking, 200);
+            // return response([
+            //     'status' => 'OK',
+            //     'message' => 'User Ditemukan',
+            //     'data' => $userBooking
+            // ], 200);
+        } else {
+            return response(404);
+            // return response([
+            //     'status' => 'Not Found',
+            //     'message' => 'Data Tidak Ditemukan'
+            // ], 404);
         }
     }
 
@@ -54,16 +110,18 @@ class UserController extends Controller
         $insert_user->alamat = $request->alamat;
         
         if($insert_user->save()){
-            return response([
-                'status' => 'OK',
-                'message' => 'User Disimpan',
-                'data' => $insert_user
-            ], 200);
+            return response($insert_user, 200);
+            // return response([
+            //     'status' => 'OK',
+            //     'message' => 'User Disimpan',
+            //     'data' => $insert_user
+            // ], 200);
         } else {
-            return response([
-                'status' => 'Failed',
-                'message' => 'User Gagal Disimpan'
-            ], 400);
+            return response(400);
+            // return response([
+            //     'status' => 'Failed',
+            //     'message' => 'User Gagal Disimpan'
+            // ], 400);
         }
     }
 
@@ -86,16 +144,18 @@ class UserController extends Controller
         $data_user->alamat = $newAlamat ? $newAlamat : $data_user->alamat;
 
         if($data_user->save()){
-            return response([
-                'status' => 'OK',
-                'message' => 'User Berhasil Disimpan',
-                'update-data' => $data_user
-            ], 200);
+            return response($data_user, 200);
+            // return response([
+            //     'status' => 'OK',
+            //     'message' => 'User Berhasil Disimpan',
+            //     'update-data' => $data_user
+            // ], 200);
         } else {
-            return response([
-                'status' => 'Failed',
-                'message' => 'User Gagal Disimpan'
-            ], 400);
+            return response(400);
+            // return response([
+            //     'status' => 'Failed',
+            //     'message' => 'User Gagal Disimpan'
+            // ], 400);
         }
     }
 
@@ -103,15 +163,17 @@ class UserController extends Controller
     {
         $user = UserModel::where('id_user', $id);
         if($user->delete()){
-            return response([
-                'status' => 'OK',
-                'message' => 'User Dihapus'
-            ], 200);
+            return response(200);
+            // return response([
+            //     'status' => 'OK',
+            //     'message' => 'User Dihapus'
+            // ], 200);
         } else {
-            return response([
-                'status' => 'Failed',
-                'message' => 'Data Gagal Dihapus'
-            ], 400);
+            return response(400);
+            // return response([
+            //     'status' => 'Failed',
+            //     'message' => 'Data Gagal Dihapus'
+            // ], 400);
         }
     }
 }
