@@ -4,6 +4,7 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DokterController;
 use App\Http\Controllers\LoginController;
+use App\Models\DokterModel;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +42,8 @@ Route::post('booking/tambah', [BookingController::class, 'insert_booking']);
 Route::put('booking/update/{id}', [BookingController::class, 'update_booking']);
 // Route::patch('booking/update/{id}', [BookingController::class, 'update_booking']);
 Route::delete('booking/delete/{id}', [BookingController::class, 'delete_booking']);
+
+Route::get('cari/{key}', [DokterController::class, 'getDokterByKey']);
 
 Route::get('dokter', [DokterController::class, 'get_all_dokter']);
 Route::get('dokter/{id}', [DokterController::class, 'getDokterById']);

@@ -45,6 +45,19 @@ class DokterController extends Controller
         }
     }
 
+    public function getDokterByKey($key)
+    {
+        $dokter = DokterModel::where('nama_dokter', 'LIKE', "%{$key}%") 
+                            ->orWhere('spesialisasi', 'LIKE', "%{$key}%") 
+                            ->orWhere('alamat', 'LIKE', "%{$key}%")
+                            ->get();
+        if(count($dokter) > 0){
+            return response($dokter, 200);
+        } else {
+            return response(404);
+        }
+    }
+
     public function insert_dokter(Request $request)
     {
         $dokter = new DokterModel;
