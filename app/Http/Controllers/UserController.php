@@ -93,8 +93,8 @@ class UserController extends Controller
                                     'dokter.spesialisasi AS spesialisasi', 
                                     'dokter.telp AS telp')
                             ->join('dokter', 'dokter.id_dokter', '=', 'booking.id_dokter')
-                            ->where('b.id_user', $id)
-                            ->orderByDesc('b.tanggal')
+                            ->where('booking.id_user', $id)
+                            ->orderByDesc('booking.tanggal')
                             ->get();
 
         if(count($userBooking) > 0){
