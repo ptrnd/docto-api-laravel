@@ -70,9 +70,24 @@ class UserController extends Controller
 
     public function getUserBookingHistory($id)
     {
+        //mysql
+        // $userBooking = DB::table('booking AS b')
+        //                     ->select(DB::raw('b.id_user AS id_user,
+        //                             DATE_FORMAT(b.tanggal, "%d-%m-%Y") AS tanggal,
+        //                             d.id_dokter AS id_dokter,
+        //                             d.nama_dokter AS nama_dokter,
+        //                             d.alamat AS alamat,
+        //                             d.spesialisasi AS spesialisasi, 
+        //                             d.telp AS telp'))
+        //                     ->join('dokter AS d', 'd.id_dokter', '=', 'b.id_dokter')
+        //                     ->where('b.id_user', $id)
+        //                     ->orderByDesc('b.tanggal')
+        //                     ->get();
+
+        //postgresql
         $userBooking = DB::table('booking AS b')
                             ->select(DB::raw('b.id_user AS id_user,
-                                    DATE_FORMAT(b.tanggal, "%d-%m-%Y") AS tanggal,
+                                    TO_CHAR(b.tanggal, "%d-%m-%Y") AS tanggal,
                                     d.id_dokter AS id_dokter,
                                     d.nama_dokter AS nama_dokter,
                                     d.alamat AS alamat,
@@ -82,6 +97,7 @@ class UserController extends Controller
                             ->where('b.id_user', $id)
                             ->orderByDesc('b.tanggal')
                             ->get();
+
         if(count($userBooking) > 0){
             return response($userBooking, 200);
             // return response([
