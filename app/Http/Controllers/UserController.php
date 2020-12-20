@@ -85,14 +85,13 @@ class UserController extends Controller
         //                     ->get();
 
         //postgresql
-        $userBooking = DB::table('booking AS b')
-                            ->select(DB::raw('b.id_user AS id_user,
-                                    TO_CHAR(b.tanggal, "%d-%m-%Y") AS tanggal,
-                                    d.id_dokter AS id_dokter,
-                                    d.nama_dokter AS nama_dokter,
-                                    d.alamat AS alamat,
-                                    d.spesialisasi AS spesialisasi, 
-                                    d.telp AS telp'))
+        $userBooking = BookingModel::select('b.id_user AS id_user',
+                                    'b.tanggal AS tanggal',
+                                    'd.id_dokter AS id_dokter',
+                                    'd.nama_dokter AS nama_dokter',
+                                    'd.alamat AS alamat',
+                                    'd.spesialisasi AS spesialisasi', 
+                                    'd.telp AS telp')
                             ->join('dokter AS d', 'd.id_dokter', '=', 'b.id_dokter')
                             ->where('b.id_user', $id)
                             ->orderByDesc('b.tanggal')
