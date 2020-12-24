@@ -47,9 +47,9 @@ class DokterController extends Controller
 
     public function getDokterByKey($key)
     {
-        $dokter = DokterModel::where('nama_dokter', 'LIKE', '%'.$key.'%') 
-                            ->orWhere('spesialisasi', 'LIKE',  '%'.$key.'%') 
-                            ->orWhere('alamat', 'LIKE',  '%'.$key.'%')
+        $dokter = DokterModel::where('nama_dokter', 'ILIKE', '%'.$key.'%') 
+                            ->orWhere('spesialisasi', 'ILIKE',  '%'.$key.'%') 
+                            ->orWhere('alamat', 'ILIKE',  '%'.$key.'%')
                             ->get();
         if(count($dokter) > 0){
             return response($dokter, 200);
