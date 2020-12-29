@@ -17,7 +17,7 @@ class CreateBookingTable extends Migration
             $table->increments('id_booking');
             $table->integer('id_user');
             $table->integer('id_dokter');
-            $table->date('tanggal');
+            $table->dateTime('tanggal');
             $table->timestamps();
         });
     }
